@@ -14,7 +14,5 @@ class Api::V1::GeneticDisordersController < ApplicationController
         result: result
       }
     end
-
-    # render json: result
   end
 end
