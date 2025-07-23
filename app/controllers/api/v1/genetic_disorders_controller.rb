@@ -5,6 +5,16 @@ class Api::V1::GeneticDisordersController < ApplicationController
 
     result = GeneticDisorderIdentifierService.new(symptoms, mutations).call
 
-    render json: result
+    if params[:format] == "pdf"
+      pdf = GeneticDisorderPdfGenerator.generate(symptoms: symptoms, matches: result)
+      send_data pdf, filename: "genetic_report_#{Time.now.to_i}.pdf", type: "application/pdf", disposition: "inline"
+    else
+      render json: {
+        symptoms: symptoms,
+        result: result
+      }
+    end
+
+    # render json: result
   end
 end

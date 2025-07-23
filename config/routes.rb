@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'genetic_disorder_identifier', to: 'genetic_disorders#identify'
+      # post 'generate_report', to: 'genetic_disorders#generate_report'
     end
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
